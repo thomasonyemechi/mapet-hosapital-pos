@@ -80,9 +80,11 @@ class SalesController extends Controller
     }
 
 
-    function todaySales($id = 0, $date = '')
+    function todaySales(Request $request,$id = 0, $date = '')
     {
         $id = ($id) ? $id : auth()->user()->id;
+
+        $date = isset($request->date) ? $request->date : '';
         $day = ($date) ? date('Y-m-d', strtotime($date)) : date('Y-m-d');
 
 

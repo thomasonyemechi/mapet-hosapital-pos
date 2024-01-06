@@ -40,7 +40,7 @@ class ItemController extends Controller
             'category_id' => 'integer|required|exists:categories,id',
             'name' => 'string|min:3|required|unique:items,name',
             'price' => 'integer|required|min:10',
-            'description' => 'string',
+            'description' => '',
         ])->validate();
 
         Item::create([

@@ -13,7 +13,7 @@ class StockController extends Controller
 {
     function restockIndex()
     {
-        return view('pos.re_stock');
+        return view('admin.re_stock');
     }
 
 

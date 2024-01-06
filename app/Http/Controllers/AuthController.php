@@ -19,6 +19,6 @@ class AuthController extends Controller
             return back()->with('error', 'Invalid credentials, please try again');
         }
 
-        return redirect('/pos')->with('success', 'Welcome back ' . auth()->user()->name);
+        return redirect('/pos?trno='.rand(23212,99999999))->with('success', 'Welcome back ' . auth()->user()->name);
     }
 }

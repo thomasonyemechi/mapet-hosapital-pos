@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ItemController;
@@ -25,8 +26,8 @@ Route::get('/', function () {
 
 
 Route::get('/login', function () {
-    return view('login') ;
-});
+    return view('login');
+})->name('login');
 
 
 Route::get('/items', [ItemController::class, 'getItems']);
@@ -36,9 +37,9 @@ Route::post('/login', [AuthController::class, 'login']);
 
 
 
-Route::group(['middleware' => ['auth']], function() {
+Route::group(['middleware' => ['auth']], function () {
 
-    
+
     Route::get('/pos', function () {
         return view('pos.pos');
     });
@@ -46,23 +47,32 @@ Route::group(['middleware' => ['auth']], function() {
     Route::post('/make_slaes', [SalesController::class, 'makeSales']);
     Route::get('/today_sales/{id?}/{date?}', [SalesController::class, 'todaySales']);
 
-    Route::group(['prefix' => 'item'], function() {
+    Route::group(['prefix' => 'item'], function () {
         Route::get('/add', [ItemController::class, 'addItemIndex']);
         Route::post('/add', [ItemController::class, 'addItem']);
         Route::post('/update', [ItemController::class, 'updateItem']);
     });
 
-    Route::group(['prefix' => 'category'], function() {
+    Route::group(['prefix' => 'category'], function () {
         Route::get('/add', [CategoryController::class, 'index']);
         Route::post('/add', [CategoryController::class, 'addCategory']);
     });
+
+
+
+
+
+    Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth']], function () {
+        Route::get('/dashboard', [AdminController::class, 'renderIndex']);
+
+        Route::group(['prefix' => 'stock'], function () {
+            Route::get('/restock', [StockController::class, 'restockIndex']);
+            Route::post('/restock', [StockController::class, 'restockItem']);
+        });
+    
+   
     
 
-    Route::group(['prefix' => 'stock'], function() {
-        Route::get('/restock', [StockController::class, 'restockIndex']);
-        Route::post('/restock', [StockController::class, 'restockItem']);
+        
     });
-    
-
-    
 });

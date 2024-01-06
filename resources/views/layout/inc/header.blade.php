@@ -4,15 +4,8 @@
         <a id="nav-toggle" href="#">
             <i class="fe fe-menu"></i>
         </a>
- 
-        <div class="ms-lg-3 d-none d-md-none d-lg-block">
-            <form class="d-flex align-items-center" action="/search_item">
-                <span class="position-absolute ps-3 search-icon">
-                    <i class="fe fe-search"></i>
-                </span>
-                <input type="search" name="item" autocomplete="fe" class="form-control form-control-sm ps-6" placeholder="Search User" />
-            </form>
-        </div>
+
+        <h4 class="fw-bold mx-2 fs-3 mt-2 "> Mapet Hospital </h4>
 
         <!--Navbar nav -->
         <ul class="navbar-nav navbar-right-wrap ms-auto d-flex nav-top-wrap">

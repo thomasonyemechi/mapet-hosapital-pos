@@ -1,4 +1,4 @@
-@extends('layout.app')
+@extends('layout.admin')
 @section('page_title')
     Restock Items
 @endsection
@@ -235,7 +235,7 @@
 
                 $.ajax({
                     method: 'post',
-                    url: '/stock/restock',
+                    url: '/admin/stock/restock',
                     data: {
                         '_token': `{{ csrf_token() }}`,
                         items: getItems(),
@@ -267,17 +267,8 @@
                     $('#supplier').val('')
                     $('#balance').val('')
 
-                    // var strWindowFeatures =
-                    //     "location=yes,height=570,width=520,scrollbars=yes,status=yes";
-                    // loc = location.href
-                    // loc = loc.replace('/pos/index', `/pos/receipt.php?sales=${res.sales_id}`);
-                    // var URL = loc;
-                    // printPage(URL)
-                    // setTimeout(() => {
-                    //     location.reload();
-                    // }, 3000);
-
-                    location.href = `/stock/restock`;
+   
+                    location.href = `/admin/stock/restock?trno=${trno()}`;
 
 
 
@@ -292,7 +283,8 @@
 
 
             $(document).on('click', '.search_item', function() {
-                console.log(this);
+                // console.log(this);
+                console.log('hello');
                 item = $(this).data('data');
                 cart = (localStorage.getItem(trno) == null) ? [] : JSON.parse(localStorage.getItem(trno));
                 arr = {
